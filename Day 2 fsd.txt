@@ -1,0 +1,27 @@
+Blog difference between document object and window object
+
+| Feature                  | Document Object                                      | Window Object                                         |
+|--------------------------|------------------------------------------------------|-------------------------------------------------------|
+| Represents               | HTML document loaded in the browser window           | Browser window/tab containing the HTML document       |
+| Content Access           | Provides access to the content of the web page       | Contains properties and methods related to the window |
+| Scope                    | Scoped to the content of the current HTML document    | Global scope in the browser environment               |
+| Content Manipulation     | Allows manipulation of elements and content          | Provides access to browser-related functionalities   |
+| Event Handling           | Handles document-specific events (e.g., load, scroll) | Manages timers, events, and browser-related events    |
+
+Document Object
+
+The Document object represents the HTML document loaded in the browser window. It serves as an interface to the web page's content, allowing JavaScript to interact with and manipulate the structure, content, and styling of the document. Here are some key points about the Document object:
+
+Represents the Web Page: The Document object represents the entire HTML document, including its elements, such as <html>, <head>, <body>, and all other HTML elements nested within.
+Provides Access to Content: Through the Document object, developers can access and modify the content of the web page, including elements, attributes, text, and more. Methods like getElementById(), getElementsByClassName(), and querySelector() allow for targeted selection and manipulation of elements within the document.
+Handles Document Events: Events related to the document, such as loading, unloading, or scrolling, can be handled using event listeners attached to the Document object.
+Scoped to Document: The Document object is scoped to the content of the current HTML document. Any operations or manipulations done through this object affect only the specific document loaded in the browser.
+
+Window Object
+
+On the other hand, the Window object represents the web browser window that contains the document. It serves as the global object for JavaScript in the browser environment and provides access to various properties and methods related to the browser window. Let's explore some key aspects of the Window object:
+
+Represents the Browser Window: The Window object represents the browser window or tab where the web page is loaded. It includes properties like window.innerHeight, window.innerWidth, and methods like window.open() for interacting with the browser window itself.
+Global Scope: The Window object serves as the global object in the browser environment. Global variables and functions are attached to the Window object, making them accessible throughout the script.
+Manages Timers and Events: Functions like setTimeout() and setInterval(), used for asynchronous execution, are part of the Window object. Additionally, event handlers like onload and onunload, which are triggered when the page is loaded or unloaded, are properties of the Window object.
+Contains Document Object: While the Window object contains the Document object (accessed via the window.document property), it operates at a higher level, encompassing not only the document but also other browser-related functionalities.
