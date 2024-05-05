@@ -1,0 +1,240 @@
+                                               Programs in anonymous function & IIFE
+1.Print odd numbers in an array
+
+Anonymous function
+let printOdd = function(arr) {
+    arr.forEach(function(num) {
+        if (num % 2 !== 0) {
+            console.log(num);
+        }
+    });
+};
+printOdd([1, 2, 3, 4, 5]);
+
+IIFE
+(function(arr) {
+    arr.forEach(function(num) {
+        if (num % 2 !== 0) {
+            console.log(num);
+        }
+    });
+})([1, 2, 3, 4, 5]);
+
+2.Convert all the strings to title caps in a string array
+
+Anonymous function
+let titleCaps = function(arr) {
+    return arr.map(function(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    });
+};
+console.log(titleCaps(["hello", "world"]));
+
+IIFE
+let titleCaps = (function(arr) {
+    return arr.map(function(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    });
+})(["hello", "world"]);
+console.log(titleCaps);
+
+3.Sum of all numbers in an array
+
+Anonymous function
+let sumArray = function(arr) {
+    return arr.reduce(function(acc, curr) {
+        return acc + curr;
+    }, 0);
+};
+console.log(sumArray([1, 2, 3, 4, 5]));
+
+IIFE
+let sum = (function(arr) {
+    return arr.reduce(function(acc, curr) {
+        return acc + curr;
+    }, 0);
+})([1, 2, 3, 4, 5]);
+console.log(sum);
+
+4.Return all the prime numbers in an array
+
+Anonymous function
+let isPrime = function(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+};
+
+let primeNumbers = function(arr) {
+    return arr.filter(function(num) {
+        return isPrime(num);
+    });
+};
+console.log(primeNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+
+IIFE
+let primeNumbers = (function(arr) {
+    let isPrime = function(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    };
+    return arr.filter(function(num) {
+        return isPrime(num);
+    });
+})([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+console.log(primeNumbers);
+
+5.Return all the palindromes in an array
+
+Anonymous function
+let isPalindrome = function(str) {
+    return str === str.split('').reverse().join('');
+};
+
+let palindromeArray = function(arr) {
+    return arr.filter(function(item) {
+        return isPalindrome(item);
+    });
+};
+console.log(palindromeArray(["level", "hello", "radar", "world"]));
+
+IIFE
+let palindromeArray = (function(arr) {
+    let isPalindrome = function(str) {
+        return str === str.split('').reverse().join('');
+    };
+    return arr.filter(function(item) {
+        return isPalindrome(item);
+    });
+})(["level", "hello", "radar", "world"]);
+console.log(palindromeArray);
+
+6.Return median of two sorted arrays of the same size
+
+Anonymous function
+let medianOfArrays = function(arr1, arr2) {
+    let mergedArray = arr1.concat(arr2);
+    let sortedArray = mergedArray.sort(function(a, b) {
+        return a - b;
+    });
+    let length = sortedArray.length;
+    if (length % 2 === 0) {
+        return (sortedArray[length / 2 - 1] + sortedArray[length / 2]) / 2;
+    } else {
+        return sortedArray[Math.floor(length / 2)];
+    }
+};
+console.log(medianOfArrays([1, 3, 5], [2, 4, 6]));
+
+IIFE
+let median = (function(arr1, arr2) {
+    let mergedArray = arr1.concat(arr2);
+    let sortedArray = mergedArray.sort(function(a, b) {
+        return a - b;
+    });
+    let length = sortedArray.length;
+    if (length % 2 === 0) {
+        return (sortedArray[length / 2 - 1] + sortedArray[length / 2]) / 2;
+    } else {
+        return sortedArray[Math.floor(length / 2)];
+    }
+})([1, 3, 5], [2, 4, 6]);
+console.log(median);
+
+7.Remove duplicates from an array
+
+Anonymous function
+let removeDuplicates = function(arr) {
+    return arr.filter(function(item, index) {
+        return arr.indexOf(item) === index;
+    });
+};
+console.log(removeDuplicates([1, 2, 3, 4, 4, 5, 5, 6]));
+
+IIFE
+let uniqueArray = (function(arr) {
+    return arr.filter(function(item, index) {
+        return arr.indexOf(item) === index;
+    });
+})([1, 2, 3, 4, 4, 5, 5, 6]);
+console.log(uniqueArray);
+
+8.Rotate an array by k times
+
+Anonymous function
+let rotateArray = function(arr, k) {
+    let len = arr.length;
+    let rotations = k % len;
+    return arr.slice(rotations).concat(arr.slice(0, rotations));
+};
+console.log(rotateArray([1, 2, 3, 4, 5], 2));
+
+IIFE
+let rotatedArray = (function(arr, k) {
+    let len = arr.length;
+    let rotations = k % len;
+    return arr.slice(rotations).concat(arr.slice(0, rotations));
+})([1, 2, 3, 4, 5], 2);
+console.log(rotatedArray);
+
+
+                                        Arrow Functions
+
+1.Print odd numbers in an array
+
+let printOdd = arr => {
+    arr.forEach(num => {
+        if (num % 2 !== 0) {
+            console.log(num);
+        }
+    });
+};
+printOdd([1, 2, 3, 4, 5]);
+
+2.Convert all the strings to title caps in a string array
+
+let titleCaps = arr => {
+    return arr.map(str => {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    });
+};
+console.log(titleCaps(["hello", "world"]));
+
+3.Sum of all numbers in an array
+
+let sumArray = arr => {
+    return arr.reduce((acc, curr) => acc + curr, 0);
+};
+console.log(sumArray([1, 2, 3, 4, 5]));
+
+4.Return all the prime numbers in an array
+
+let isPrime = num => {
+    if (num <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+};
+
+let primeNumbers = arr => {
+    return arr.filter(num => isPrime(num));
+};
+console.log(primeNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+
+5.Return all the palindromes in an array
+
+let isPalindrome = str => {
+    return str === str.split('').reverse().join('');
+};
+
+let palindromeArray = arr => {
+    return arr.filter(item => isPalindrome(item));
+};
+console.log(palindromeArray(["level", "hello", "radar", "world"]));
+
