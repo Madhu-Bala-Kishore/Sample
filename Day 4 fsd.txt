@@ -1,0 +1,130 @@
+{
+  "name": "Madhu Bala Kishore.E",
+  "contact_info": {
+    "email": "madhukishore132@gmail.com",
+    "phone": "9952534386",
+    "address": "1331A/62,Ravisankar Nagar Tirunelveli-627011"
+  },
+  "summary": "Experienced software engineer with a passion for building scalable and efficient web applications. Skilled in full-stack development, with expertise in JavaScript, Node.js, React, and MongoDB.",
+  "education": [
+    {
+      "degree": "Bachelor of Science in Geo Informatics",
+      "university": "Anna University",
+      "location": "Thoothukudi, India",
+      "graduation_year": "2022"
+    }
+  ],
+  "work_experience": [
+    {
+      "position": "System Engineer",
+      "company": "GESA",
+      "location": "Chennai, India",
+      "start_date": "January 2022",
+      "end_date": "Present",
+      "responsibilities": [
+        "Led a team of developers in the successful implementation of a new microservices architecture, resulting in a 30% improvement in application performance.",
+        "Developed RESTful APIs using Node.js and Express for seamless integration between frontend and backend systems.",
+        "Collaborated with UI/UX designers to create responsive and user-friendly web interfaces using React."
+      ]
+    },
+    {
+      
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "list": ["JavaScript", "Python", "Java"]
+    },
+    {
+      "category": "Web Development",
+      "list": ["HTML5", "CSS3", "React.js", "Node.js", "Express.js"]
+    },
+    {
+      "category": "Databases",
+      "list": ["MongoDB", "MySQL", "PostgreSQL"]
+    },
+    {
+      "category": "Tools & Technologies",
+      "list": ["Git", "Docker", "Jenkins", "AWS"]
+    }
+  ]
+}
+
+1.Using for in loop
+
+  const resumeData = {
+                   "name": "Madhu Bala Kishore.E",
+  "contact_info": {
+    "email": "madhukishore132@gmail.com",
+    "phone": "9952534386",
+    "address": "1331A/62,Ravisankar Nagar Tirunelveli-627011"
+  },
+  "summary": "Experienced software engineer with a passion for building scalable and efficient web applications. Skilled in full-stack development, with expertise in JavaScript, Node.js, React, and MongoDB.",
+  "education": [
+    {
+      "degree": "Bachelor of Science in Geo Informatics",
+      "university": "Anna University",
+      "location": "Thoothukudi, India",
+      "graduation_year": "2022"
+    }
+  ],
+  "work_experience": [
+    {
+      "position": "System Engineer",
+      "company": "GESA",
+      "location": "Chennai, India",
+      "start_date": "January 2022",
+      "end_date": "Present",
+      "responsibilities": [
+        "Led a team of developers in the successful implementation of a new microservices architecture, resulting in a 30% improvement in application performance.",
+        "Developed RESTful APIs using Node.js and Express for seamless integration between frontend and backend systems.",
+        "Collaborated with UI/UX designers to create responsive and user-friendly web interfaces using React."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "list": ["JavaScript", "Python", "Java"]
+    },
+    {
+      "category": "Web Development",
+      "list": ["HTML5", "CSS3", "React.js", "Node.js", "Express.js"]
+    },
+    {
+      "category": "Databases",
+      "list": ["MongoDB", "MySQL", "PostgreSQL"]
+    },
+    {
+      "category": "Tools & Technologies",
+      "list": ["Git", "Docker", "Jenkins", "AWS"]
+    }
+  ]
+};
+
+for (const key in resumeData) {
+  if (resumeData.hasOwnProperty(key)) {
+    console.log(`${key}: ${JSON.stringify(resumeData[key])}`);
+  }
+}
+
+2.Using for of loop (for arrays)
+
+for (const experience of resumeData.work_experience) {
+  console.log(`Position: ${experience.position}`);
+  console.log(`Company: ${experience.company}`);
+  console.log(`Location: ${experience.location}`);
+  console.log(`Start Date: ${experience.start_date}`);
+  console.log(`End Date: ${experience.end_date}`);
+  console.log(`Responsibilities: ${experience.responsibilities.join('\n')}`);
+}
+
+3.Using forEach method (for arrays)
+
+resumeData.education.forEach(education => {
+  console.log(`Degree: ${education.degree}`);
+  console.log(`University: ${education.university}`);
+  console.log(`Location: ${education.location}`);
+  console.log(`Graduation Year: ${education.graduation_year}`);
+});
