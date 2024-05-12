@@ -1,0 +1,47 @@
+Write a “person” class to hold all the details
+
+class Person {
+  constructor(firstName, lastName, age, gender, interests) {
+    this.firstName = Madhu Bala;
+    this.lastName = Kishore;
+    this.age = 22;
+    this.gender = Male;
+    this.interests = Cricket;
+  }
+
+  getFullName() {
+    return {this.firstName} {this.lastName}`;
+  }
+
+  greet() {
+    let prefix = '';
+    if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+      prefix = 'Mr.';
+    } else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+      prefix = 'Ms.';
+    } else {
+      prefix = 'Mx.';
+    }
+    console.log(`Hello, {prefix} {this.lastName}.`);
+  }
+}
+
+
+write a class to calculate the Uber price
+
+
+class UberPriceCalculator {
+  constructor(baseFare, costPerKm, costPerMinute) {
+    this.baseFare = baseFare;
+    this.costPerKm = costPerKm;
+    this.costPerMinute = costPerMinute;
+  }
+
+  calculatePrice(distanceInKm, timeInMinutes) {
+    const fareFromDistance = distanceInKm * this.costPerKm;
+    const fareFromTime = timeInMinutes * this.costPerMinute;
+    const totalPrice = this.baseFare + fareFromDistance + fareFromTime;
+    return totalPrice;
+  }
+}
+
