@@ -1,0 +1,108 @@
+1. Get all the countries from Asia continent /region using Filter method
+
+async function getAsianCountries() {
+    try {
+     
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const countries = await response.json();
+
+       
+        const asianCountries = countries.filter(country => country.region === 'Asia');
+
+      
+        console.log(asianCountries);
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+    }
+}
+getSmallPopulationCountries();
+
+
+2. Get all the countries with a population of less than 2 lakhs using Filter method
+
+
+async function getSmallPopulationCountries() 
+{
+    try 
+{
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const countries = await response.json();
+
+     
+        const smallPopulationCountries = countries.filter(country => country.population < 200000);
+
+       
+        console.log(smallPopulationCountries);
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+    }
+}
+getSmallPopulationCountries();
+
+3.Print the following details name, capital, flag, using forEach method
+
+async function printCountryDetails() {
+    try {
+
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const countries = await response.json();
+
+        countries.forEach(country => 
+{
+            const name = country.name.common;
+            const capital = country.capital ? country.capital[0] : 'No capital';
+            const flag = country.flags.png;
+            console.log(`Name: ${name}, Capital: ${capital}, Flag: ${flag}`);
+        });
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+    }
+}
+
+printCountryDetails();
+
+4.Print the total population of countries using reduce method
+
+async function getTotalPopulation() {
+    try {
+       
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const countries = await response.json();
+
+      
+        const totalPopulation = countries.reduce((accumulator, country) => {
+            return accumulator + country.population;
+        }, 0);
+
+        
+        console.log(`Total Population: ${totalPopulation}`);
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+    }
+}
+
+getTotalPopulation();
+
+5. Print the country that uses US dollars as currency.
+
+async function printCountriesUsingUSD() {
+    try {
+        
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const countries = await response.json();
+
+        const countriesUsingUSD = countries.filter(country => {
+            return country.currencies && country.currencies.USD;
+        });
+
+        countriesUsingUSD.forEach(country => {
+            console.log(`Country: ${country.name.common}`);
+        });
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+    }
+}
+
+printCountriesUsingUSD();
+
+
