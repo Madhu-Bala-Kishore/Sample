@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation with Forms</title>
+    <style>
+        /* Simple CSS for styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Manipulation with Forms</h1>
+
+    <form id="userForm">
+        <label>First Name: <input type="text" id="firstName" required></label><br><br>
+        <label>Last Name: <input type="text" id="lastName" required></label><br><br>
+        <label>Email: <input type="email" id="email" required></label><br><br>
+        <label>Address: <input type="text" id="address" required></label><br><br>
+        <label>Pincode: <input type="text" id="pincode" required></label><br><br>
+        <label>Gender:
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </label><br><br>
+        <label>Choice of Food (Select at least 2):<br>
+            <input type="checkbox" class="food" value="Pizza"> Pizza<br>
+            <input type="checkbox" class="food" value="Burger"> Burger<br>
+            <input type="checkbox" class="food" value="Pasta"> Pasta<br>
+            <input type="checkbox" class="food" value="Salad"> Salad<br>
+            <input type="checkbox" class="food" value="Sushi"> Sushi
+        </label><br><br>
+        <label>State: <input type="text" id="state" required></label><br><br>
+        <label>Country: <input type="text" id="country" required></label><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Gender</th>
+                <th>Food Choice</th>
+                <th>State</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript for DOM Manipulation
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const pincode = document.getElementById('pincode').value;
+            const gender = document.getElementById('gender').value;
+            const state = document.getElementById('state').value;
+            const country = document.getElementById('country').value;
+
+            // Get selected food choices
+            const foodChoices = [];
+            document.querySelectorAll('.food:checked').forEach(food => {
+                foodChoices.push(food.value);
+            });
+
+            if (foodChoices.length < 2) {
+                alert("Please select at least two food choices.");
+                return;
+            }
+
+            // Insert values into the table
+            const table = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            newRow.insertCell(0).textContent = firstName;
+            newRow.insertCell(1).textContent = lastName;
+            newRow.insertCell(2).textContent = email;
+            newRow.insertCell(3).textContent = address;
+            newRow.insertCell(4).textContent = pincode;
+            newRow.insertCell(5).textContent = gender;
+            newRow.insertCell(6).textContent = foodChoices.join(', ');
+            newRow.insertCell(7).textContent = state;
+            newRow.insertCell(8).textContent = country;
+
+            // Clear the form
+            document.getElementById('userForm').reset();
+        });
+    </script>
+
+</body>
+</html>
