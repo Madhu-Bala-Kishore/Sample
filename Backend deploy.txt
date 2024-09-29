@@ -1,0 +1,86 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
+
+UserSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+module.exports = mongoose.model('User', UserSchema);
+const mongoose = require('mongoose');
+
+const CustomerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  phone: String,
+  preferences: [String],
+});
+
+module.exports = mongoose.model('Customer', CustomerSchema);
+const express = require('express');
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+
+router.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  const user = new User({ username, password });
+  await user.save();
+  res.status(201).send('User registered');
+});
+
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+  if (!user || !await bcrypt.compare(password, user.password)) {
+    return res.status(401).send('Invalid credentials');
+  }
+  const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '1h' });
+  res.send({ user: { id: user._id, username: user.username }, token });
+});
+
+module.exports = router;
+const express = require('express');
+const Customer = require('../models/Customer');
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+  const customers = await Customer.find();
+  res.json(customers);
+});
+
+router.post('/', async (req, res) => {
+  const customer = new Customer(req.body);
+  await customer.save();
+  res.status(201).send(customer);
+});
+
+
+module.exports = router;
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const authRoutes = require('./routes/auth');
+const customerRoutes = require('./routes/customers');
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+mongoose.connect('mongodb://localhost:27017/crm', { useNewUrlParser: true, useUnifiedTopology: true });
+
+app.use(cors());
+app.use(express.json());
+app.use('/api/auth', authRoutes);
+app.use('/api/customers', customerRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
